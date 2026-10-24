@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #07060a;
+}
+
+body {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#shop {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, #160d24 0 42px, #110a1c 42px 84px);
+}
+
+#floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 30%;
+  background: repeating-conic-gradient(#1b1228 0 25%, #0c0714 0 50%) 0 0 / 80px 80px;
+}
+
+#shelf {
+  position: absolute;
+  top: 24%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 34px;
+  letter-spacing: 18px;
+  opacity: 0.6;
+}
+
+#neon {
+  position: absolute;
+  top: 11%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: 12px;
+  color: #f0abfc;
+  text-shadow: 0 0 10px #d946ef, 0 0 30px #a21caf;
+  animation: flicker 3.2s infinite;
+}
+
+@keyframes flicker {
+  0%, 18%, 22%, 62%, 66%, 100% {
+    opacity: 1;
+  }
+
+  20%, 64% {
+    opacity: 0.25;
+  }
+}
+
+.note {
+  position: absolute;
+  color: #c4b5fd;
+  font-size: 15px;
+  opacity: 0;
+  transition: opacity 0.4s;
+  text-shadow: 0 0 8px #8b5cf6;
+}
+
+body.uv .note {
+  opacity: 1;
+}
+
+.item {
+  position: absolute;
+  font-size: 44px;
+  line-height: 1;
+  background: none;
+  border: 0;
+  padding: 12px;
+  filter: drop-shadow(0 0 6px #a855f7);
+  transition: transform 0.25s, opacity 0.4s;
+}
+
+body.uv .item {
+  filter: drop-shadow(0 0 16px #e879f9) drop-shadow(0 0 4px #fff);
+}
+
+.item.got {
+  transform: scale(2) translateY(-30px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+#ghost {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 52px;
+  line-height: 1;
+  filter: drop-shadow(0 0 14px #67e8f9);
+}
+
+#dark {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  background: rgba(2, 0, 6, 0.975);
+  -webkit-mask: radial-gradient(circle var(--light-radius, 150px) at var(--light-x, 50vw) var(--light-y, 50vh), transparent 30%, #000 100%);
+  mask: radial-gradient(circle var(--light-radius, 150px) at var(--light-x, 50vw) var(--light-y, 50vh), transparent 30%, #000 100%);
+}
+
+body.uv #dark {
+  background: rgba(14, 0, 34, 0.95);
+}
+
+body.off #dark {
+  background: rgba(0, 0, 0, 0.99);
+  -webkit-mask: none;
+  mask: none;
+}
+
+#danger {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle at center, transparent 35%, rgba(180, 0, 30, 0.75) 100%);
+}
+
+#flash {
+  position: fixed;
+  inset: 0;
+  z-index: 26;
+  pointer-events: none;
+  opacity: 0;
+  background: #b0001e;
+  transition: opacity 0.6s;
+}
+
+@keyframes wobble {
+  0%, 100% {
+    transform: rotate(-4deg);
+  }
+
+  50% {
+    transform: rotate(4deg);
+  }
+}
+
+.wobble {
+  animation: wobble 1.4s ease-in-out infinite;
+}
